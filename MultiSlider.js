@@ -56,6 +56,7 @@ export default class MultiSlider extends React.Component {
     markerOffsetX: PropTypes.number,
     markerOffsetY: PropTypes.number,
     vertical: PropTypes.bool,
+    inverted: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -90,6 +91,7 @@ export default class MultiSlider extends React.Component {
     allowOverlap: false,
     snapped: false,
     vertical: false,
+    inverted: false,
   };
 
   constructor(props) {
@@ -376,7 +378,7 @@ export default class MultiSlider extends React.Component {
 
     if (this.props.vertical) {
       containerStyle.push({
-        transform: [{ rotate: '-90deg' }],
+        transform: [{ rotate: this.props.inverted ? '90deg' : '-90deg' }],
       })
     }
 
