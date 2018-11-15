@@ -258,8 +258,8 @@ export default class MultiSlider extends React.Component {
       return;
     }
 
-    const accumDistance = this.props.vertical ? -gestureState.dy : gestureState.dx;
-    const accumDistanceDisplacement = this.props.vertical ? gestureState.dx : gestureState.dy;
+    const accumDistance = this.props.vertical ? this.props.inverted ? gestureState.dy : -gestureState.dy : gestureState.dx;
+    const accumDistanceDisplacement = this.props.vertical ? this.props.inverted ? -gestureState.dx : gestureState.dx : gestureState.dy;
 
     const unconfined = I18nManager.isRTL ? this.state.pastTwo - accumDistance : accumDistance + this.state.pastTwo;
     var bottom = this.state.positionOne + (this.props.allowOverlap ? 0 : this.stepLength);
