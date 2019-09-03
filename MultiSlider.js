@@ -237,27 +237,27 @@ export default class MultiSlider extends React.Component {
     const indicators = this.props.indicators.slice().reverse()
     for(let index = 0; index < indicators.length ; index++) {
       if(index === 0) {
-        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: -12}]}>{indicators[index]} {this.props.unit} </Text>)
+        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: -0}]}>{indicators[index]} {this.props.unit} </Text>)
       } else {
         const step = sliderLength/(this.props.indicators.length-1)
-        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step - 12}]}>{indicators[index]} {'€'} </Text>)
-        viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2, 
+        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step - 0}]}>{indicators[index]} {'€'} </Text>)
+        viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2 + 24, 
           backgroundColor: (sliderLength - (index*step - step/2)) < trackOneLength ? '#ff9933' : 'rgba(220,220,220,0.7)' }]}></View>)
       }
     }
 
     return (
-      <View style={[styles.overlay, { height:sliderLength} ]}>
+      <View style={[styles.overlay, { height:sliderLength + 24} ]}>
       <LinearGradient style={[styles.linearGradient, {height: trackOneLength}]} colors={['rgba(245,224,177,1.0)', 'rgba(245,224,177,0.8)', 'rgba(245,224,177,0.1)']} />
       {viewHorizontalSeparator}
-       <View style={styles.gridContainer}>
+       <View ref={component => this._markerOne = component}{...this._panResponderOne.panHandlers} style={styles.gridContainer}>
           <View style={{flex:1}}></View>
           <View style={[containerStyle]}>
-            <View style={[styles.fullTrack, { width: sliderLength+20 }]}>
+            <View style={[styles.fullTrack, { width: sliderLength+20+24 }]}>
               <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength+10 }]}/>
               <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength+10 }]}/>
                 <View style={[styles.markerContainer, markerContainerOne, this.props.markerContainerStyle,positionOne > sliderLength / 2 && styles.topMarkerContainer ]}>
-                <View style={[styles.touch, touchStyle]} ref={component => this._markerOne = component}{...this._panResponderOne.panHandlers}>
+                <View style={[styles.touch, touchStyle]}>
                   <Marker
                     enabled={this.props.enabledOne}
                     pressed={this.state.onePressed}
