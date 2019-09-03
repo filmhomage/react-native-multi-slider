@@ -46,7 +46,8 @@ export default class MultiSlider extends React.Component {
     markerOffsetY: PropTypes.number,
     vertical: PropTypes.bool,
     inverted: PropTypes.bool,
-    indicators: PropTypes.array
+    indicators: PropTypes.array,
+    unit: PropTypes.string
   };
 
   static defaultProps = {
@@ -191,10 +192,7 @@ export default class MultiSlider extends React.Component {
       this.setState({positionOne: this.props.snapped ? snapped : confined,});
       if (value !== this.state.valueOne) {
         this.setState({valueOne: value,},() => {
-            var change = [this.state.valueOne];
-            if (this.state.valueTwo) {
-              change.push(this.state.valueTwo);
-            }
+            var change = this.state.valueOne;
             this.props.onValuesChange(change, gestureState);
           },
         );
@@ -239,10 +237,10 @@ export default class MultiSlider extends React.Component {
     const indicators = this.props.indicators.slice().reverse()
     for(let index = 0; index < indicators.length ; index++) {
       if(index === 0) {
-        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: -13}]}>{indicators[index]} {'€'} </Text>)
+        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: -12}]}>{indicators[index]} {this.props.unit} </Text>)
       } else {
         const step = sliderLength/(this.props.indicators.length-1)
-        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step - 13}]}>{indicators[index]} {'€'} </Text>)
+        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step - 12}]}>{indicators[index]} {'€'} </Text>)
         viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2, 
           backgroundColor: (sliderLength - (index*step - step/2)) < trackOneLength ? '#ff9933' : 'rgba(220,220,220,0.7)' }]}></View>)
       }
@@ -255,9 +253,9 @@ export default class MultiSlider extends React.Component {
        <View style={styles.gridContainer}>
           <View style={{flex:1}}></View>
           <View style={[containerStyle]}>
-            <View style={[styles.fullTrack, { width: sliderLength }]}>
-              <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength }]}/>
-              <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength }]}/>
+            <View style={[styles.fullTrack, { width: sliderLength+20 }]}>
+              <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength+10 }]}/>
+              <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength+10 }]}/>
                 <View style={[styles.markerContainer, markerContainerOne, this.props.markerContainerStyle,positionOne > sliderLength / 2 && styles.topMarkerContainer ]}>
                 <View style={[styles.touch, touchStyle]} ref={component => this._markerOne = component}{...this._panResponderOne.panHandlers}>
                   <Marker
