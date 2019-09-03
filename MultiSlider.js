@@ -255,9 +255,9 @@ export default class MultiSlider extends React.Component {
        <View style={styles.gridContainer}>
           <View style={{flex:1}}></View>
           <View style={[containerStyle]}>
-            <View style={[styles.fullTrack, { width: sliderLength+20 }]}>
-              <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength+10 }]}/>
-              <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength+10 }]}/>
+            <View style={[styles.fullTrack, { width: sliderLength }]}>
+              <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength }]}/>
+              <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength }]}/>
                 <View style={[styles.markerContainer, markerContainerOne, this.props.markerContainerStyle,positionOne > sliderLength / 2 && styles.topMarkerContainer ]}>
                 <View style={[styles.touch, touchStyle]} ref={component => this._markerOne = component}{...this._panResponderOne.panHandlers}>
                   <Marker
