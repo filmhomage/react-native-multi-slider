@@ -241,7 +241,7 @@ export default class MultiSlider extends React.Component {
       } else {
         const step = sliderLength/(this.props.indicators.length-1)
         textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step + (Platform.OS === 'ios' ? -14 : -14)}]}>{indicators[index]} {this.props.unit} </Text>)
-        viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2 - 24, 
+        viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2 + (Platform.OS === 'ios' ? 0 : -24), 
           backgroundColor: (sliderLength - (index*step - step/2)) < trackOneLength ? '#ff9933' : 'rgba(220,220,220,0.7)' }]}></View>)
       }
     }
@@ -254,8 +254,8 @@ export default class MultiSlider extends React.Component {
           <View style={{flex:1}}></View>
           <View style={[containerStyle]}>
             <View style={[styles.fullTrack, { width: sliderLength + 0 + (Platform.OS === 'ios' ? 0 : 0), marginRight: 0 }]}>
-              <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength + (Platform.OS === 'android' ? 0 : 10) }]}/>
-              <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength + (Platform.OS === 'android' ? 0 : 10) }]}/>
+              <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength + (Platform.OS === 'ios' ? 0 : 0) }]}/>
+              <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength + (Platform.OS === 'ios' ? 0 : 0) }]}/>
                 <View style={[styles.markerContainer, markerContainerOne, this.props.markerContainerStyle,positionOne > sliderLength / 2 && styles.topMarkerContainer ]}>
                 <View style={[styles.touch, touchStyle]}>
                   <Marker
