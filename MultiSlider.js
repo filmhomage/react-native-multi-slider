@@ -247,13 +247,13 @@ export default class MultiSlider extends React.Component {
     }
 
     return (
-      <View style={[styles.overlay, { height:sliderLength + 24} ]}>
+      <View style={[styles.overlay, { height:sliderLength + 24 + 20} ]}>
       <LinearGradient style={[styles.linearGradient, {height: trackOneLength}]} colors={['rgba(245,224,177,1.0)', 'rgba(245,224,177,0.8)', 'rgba(245,224,177,0.1)']} />
       {viewHorizontalSeparator}
        <View ref={component => this._markerOne = component}{...this._panResponderOne.panHandlers} style={styles.gridContainer}>
           <View style={{flex:1}}></View>
           <View style={[containerStyle]}>
-            <View style={[styles.fullTrack, { width: sliderLength+20+24 }]}>
+            <View style={[styles.fullTrack, { width: sliderLength + 24 + 20 }]}>
               <View style={[styles.track, this.props.trackStyle, trackOneStyle, { width: trackOneLength+10 }]}/>
               <View style={[styles.track, this.props.trackStyle, trackTwoStyle,{ width: trackTwoLength+10 }]}/>
                 <View style={[styles.markerContainer, markerContainerOne, this.props.markerContainerStyle,positionOne > sliderLength / 2 && styles.topMarkerContainer ]}>
