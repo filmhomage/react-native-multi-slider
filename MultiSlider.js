@@ -239,10 +239,10 @@ export default class MultiSlider extends React.Component {
     const indicators = this.props.indicators.slice().reverse()
     for(let index = 0; index < indicators.length ; index++) {
       if(index === 0) {
-        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: -12}]}>{indicators[index]} {'€'} </Text>)
+        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: -13}]}>{indicators[index]} {'€'} </Text>)
       } else {
         const step = sliderLength/(this.props.indicators.length-1)
-        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step - 12}]}>{indicators[index]} {'€'} </Text>)
+        textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step - 13}]}>{indicators[index]} {'€'} </Text>)
         viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2, 
           backgroundColor: (sliderLength - (index*step - step/2)) < trackOneLength ? '#ff9933' : 'rgba(220,220,220,0.7)' }]}></View>)
       }
