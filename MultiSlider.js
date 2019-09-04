@@ -181,9 +181,7 @@ export default class MultiSlider extends React.Component {
     var bottom = 0;
     var trueTop = this.state.positionTwo - (this.props.allowOverlap ? 0 : this.stepLength);
     var top = trueTop === 0 ? 0 : trueTop || this.props.sliderLength;
-    var confined = unconfined < bottom
-      ? bottom
-      : unconfined > top ? top : unconfined;
+    var confined = unconfined < bottom ? bottom : unconfined > top ? top : unconfined;
     var slipDisplacement = this.props.touchDimensions.slipDisplacement;
 
     if (Math.abs(accumDistanceDisplacement) < slipDisplacement || !slipDisplacement) {
@@ -241,7 +239,7 @@ export default class MultiSlider extends React.Component {
       } else {
         const step = sliderLength/(this.props.indicators.length-1)
         textGridRangeLabel.push(<Text key={index} style={[styles.textSliderGridText, { top: index*step + (Platform.OS === 'ios' ? -14 : -14)}]}>{indicators[index]} {this.props.unit} </Text>)
-        viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2 + (Platform.OS === 'ios' ? 0 : -24), 
+        viewHorizontalSeparator.push(<View key={index} style={[styles.separatorSliderGridView, {top: index*step - step/2 + (Platform.OS === 'ios' ? 0 : 24), 
           backgroundColor: (sliderLength - (index*step - step/2)) < trackOneLength ? '#ff9933' : 'rgba(220,220,220,0.7)' }]}></View>)
       }
     }
@@ -344,7 +342,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: -50,
     width: 100,
-    height: 20,
+    height: 22,
     fontSize: 19,
     fontWeight: 'bold',
     textAlign: 'right',
